@@ -1,0 +1,15 @@
+{
+  "name": "rustbn",
+  "collaborators": [
+    "acolytec3"
+  ],
+  "description": "javascript bindings for ethereum-bn128 (using wasm)",
+  "version": "0.1.0",
+  "files": [
+    "rustbn_bg.wasm",
+    "rustbn.js",
+    "rustbn.d.ts"
+  ],
+  "main": "rustbn.js",
+  "types": "rustbn.d.ts"
+}
