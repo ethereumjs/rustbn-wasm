@@ -12,5 +12,6 @@
     "webpack-cli": "^3.3.3",
     "webpack-dev-server": "^3.7.1",
     "rimraf": "^3.0.0"
-  }
+  },
+  "main": "pkg/rustbn.js"
 }
