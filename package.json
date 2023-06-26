@@ -13,5 +13,6 @@
     "webpack-dev-server": "^3.7.1",
     "rimraf": "^3.0.0"
   },
-  "main": "pkg/rustbn.js"
+  "main": "dist/cjs/rustbn.js",
+  "module": "dist/esm/rustbn.js"
 }
