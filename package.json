@@ -1,6 +1,6 @@
 {
-  "author": "rustbn.wasm",
-  "name": "javascript bindings for https://github.com/paritytech/bn (using wasm)",
+  "author": "acolytec3",
+  "name": "rustbn.wasm",
   "version": "0.1.0",
   "scripts": {
     "build": "wasm-pack --target nodejs"
