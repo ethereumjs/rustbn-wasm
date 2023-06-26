@@ -1,0 +1,16 @@
+{
+  "author": "rustbn.wasm",
+  "name": "javascript bindings for https://github.com/paritytech/bn (using wasm)",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "wasm-pack --target nodejs"
+  },
+  "devDependencies": {
+    "@wasm-tool/wasm-pack-plugin": "^1.1.0",
+    "copy-webpack-plugin": "^5.0.3",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.3",
+    "webpack-dev-server": "^3.7.1",
+    "rimraf": "^3.0.0"
+  }
+}
