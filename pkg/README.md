@@ -1,48 +1,65 @@
-## How to install
+# SYNOPSIS 
+Rust to Javascript/Webassembly compilation of [ethereum-bn128.rs](https://github.com/ewasm/ethereum-bn128.rs).
 
-```sh
-npm install
+Derived largely from [rustbn.js](https://github.com/ethereumjs/rustbn.js) and recompiled used [`wasm-pack`](https://rustwasm.github.io/docs/wasm-pack/introduction.html)
+
+Internally it uses the [Parity fork](https://github.com/paritytech/bn) of the [Zcash bn
+pairing cryptography library](https://github.com/zcash/bn), implementing an efficient bilinear pairing on the Barreto-Naehrig (BN) curve. 
+
+It implements helpers to support the functionality defined in [EIP-196](https://eips.ethereum.org/EIPS/eip-196) and [EIP-197](https://eips.ethereum.org/EIPS/eip-197).
+
+## Installation
+
+Clone this repo and build following the [Compilation]() instructions below.
+
+## Usage
+
+Import the module:
+
+```
+import { ec_add, ec_mul, ec_pairing } from 'rustbn'
 ```
 
-## How to run in debug mode
+Curve Addition
 
-```sh
-# Builds the project and opens it in a new browser tab. Auto-reloads when the project changes.
-npm start
+```
+let inputHexString = ...
+let outputHexString = ec_add(inputHexString)
 ```
 
-## How to build in release mode
+Curve Multiplication
 
-```sh
-# Builds the project and places it into the `dist` folder.
-npm run build
+```
+let inputHexString = ...
+let outputHexString = ec_mul(inputHexString)
 ```
 
-## How to run unit tests
-
-```sh
-# Runs tests in Firefox
-npm test -- --firefox
-
-# Runs tests in Chrome
-npm test -- --chrome
-
-# Runs tests in Safari
-npm test -- --safari
+Curve Pairing
+```
+let inputHexString = ...
+let outputHexString = ec_pairing(inputHexString)
 ```
 
-## What does each file do?
+## Developer
 
-* `Cargo.toml` contains the standard Rust metadata. You put your Rust dependencies in here. You must change this file with your details (name, description, version, authors, categories)
+### Compilation
 
-* `package.json` contains the standard npm metadata. You put your JavaScript dependencies in here. You must change this file with your details (author, name, version)
+Compilation process based on the [`wasm-pack`](https://rustwasm.github.io/docs/wasm-pack/introduction.html) docs.
 
-* `webpack.config.js` contains the Webpack configuration. You shouldn't need to change this, unless you have very special needs.
+For basic setup:
+- Install `rust` and `wasm-pack` via the [`wasm-pack` preqrequisites](https://rustwasm.github.io/docs/wasm-pack/prerequisites/index.html)
+- Clone this repo
+- Run `wasm-pack --target nodejs`
 
-* The `js` folder contains your JavaScript code (`index.js` is used to hook everything into Webpack, you don't need to change it).
 
-* The `src` folder contains your Rust code.
+## License
 
-* The `static` folder contains any files that you want copied as-is into the final build. It contains an `index.html` file which loads the `index.js` file.
+Licensed under either of
 
-* The `tests` folder contains your Rust unit tests.
+ * MIT license, ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+ * Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
+
+at your option.
+
+Copyright 2016 [Zcash Electric Coin Company](https://z.cash/). The Zcash Company promises to maintain the "bn" crate on crates.io under this MIT/Apache-2.0 dual license.
+ 

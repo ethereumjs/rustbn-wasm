@@ -1,6 +1,6 @@
 {
   "author": "acolytec3",
-  "name": "rustbn.wasm",
+  "name": "rustbn",
   "version": "0.1.0",
   "scripts": {
     "build": "wasm-pack --target nodejs"

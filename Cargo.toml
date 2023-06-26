@@ -1,7 +1,7 @@
 # You must change these to your own details.
 [package]
-name = "rustbn.wasm"
-description = "javascript bindings for https://github.com/paritytech/bn (using wasm)"
+name = "rustbn"
+description = "javascript bindings for ethereum-bn128 (using wasm)"
 version = "0.1.0"
 authors = ["acolytec3"]
 categories = ["wasm"]

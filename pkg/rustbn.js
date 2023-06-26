@@ -1,6 +1,4 @@
-let imports = {};
-let wasm;
-const { TextEncoder, TextDecoder } = require(`util`);
+
 
 let WASM_VECTOR_LEN = 0;
 
@@ -13,20 +11,11 @@ function getUint8Memory0() {
     return cachedUint8Memory0;
 }
 
-let cachedTextEncoder = new TextEncoder('utf-8');
+const cachedTextEncoder = (typeof TextEncoder !== 'undefined' ? new TextEncoder('utf-8') : { encode: () => { throw Error('TextEncoder not available') } } );
 
-const encodeString = (typeof cachedTextEncoder.encodeInto === 'function'
-    ? function (arg, view) {
+const encodeString = function (arg, view) {
     return cachedTextEncoder.encodeInto(arg, view);
-}
-    : function (arg, view) {
-    const buf = cachedTextEncoder.encode(arg);
-    view.set(buf);
-    return {
-        read: arg.length,
-        written: buf.length
-    };
-});
+};
 
 function passStringToWasm0(arg, malloc, realloc) {
 
@@ -75,9 +64,9 @@ function getInt32Memory0() {
     return cachedInt32Memory0;
 }
 
-let cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
+const cachedTextDecoder = (typeof TextDecoder !== 'undefined' ? new TextDecoder('utf-8', { ignoreBOM: true, fatal: true }) : { decode: () => { throw Error('TextDecoder not available') } } );
 
-cachedTextDecoder.decode();
+if (typeof TextDecoder !== 'undefined') { cachedTextDecoder.decode(); };
 
 function getStringFromWasm0(ptr, len) {
     ptr = ptr >>> 0;
@@ -87,7 +76,7 @@ function getStringFromWasm0(ptr, len) {
 * @param {string} input_hex
 * @returns {string}
 */
-module.exports.ec_mul = function(input_hex) {
+export function ec_mul(input_hex) {
     let deferred2_0;
     let deferred2_1;
     try {
@@ -104,13 +93,13 @@ module.exports.ec_mul = function(input_hex) {
         wasm.__wbindgen_add_to_stack_pointer(16);
         wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
     }
-};
+}
 
 /**
 * @param {string} input_str
 * @returns {string}
 */
-module.exports.ec_add = function(input_str) {
+export function ec_add(input_str) {
     let deferred2_0;
     let deferred2_1;
     try {
@@ -127,13 +116,13 @@ module.exports.ec_add = function(input_str) {
         wasm.__wbindgen_add_to_stack_pointer(16);
         wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
     }
-};
+}
 
 /**
 * @param {string} input_str
 * @returns {string}
 */
-module.exports.ec_pairing = function(input_str) {
+export function ec_pairing(input_str) {
     let deferred2_0;
     let deferred2_1;
     try {
@@ -150,13 +139,28 @@ module.exports.ec_pairing = function(input_str) {
         wasm.__wbindgen_add_to_stack_pointer(16);
         wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
     }
+}
+
+const imports = {
+    __wbindgen_placeholder__: {
+    },
+
 };
 
-const path = require('path').join(__dirname, 'rustbn_bg.wasm');
-const bytes = require('fs').readFileSync(path);
+const wasm_url = new URL('rustbn_bg.wasm', import.meta.url);
+let wasmCode = '';
+switch (wasm_url.protocol) {
+    case 'file:':
+    wasmCode = await Deno.readFile(wasm_url);
+    break
+    case 'https:':
+    case 'http:':
+    wasmCode = await (await fetch(wasm_url)).arrayBuffer();
+    break
+    default:
+    throw new Error(`Unsupported protocol: ${wasm_url.protocol}`);
+}
 
-const wasmModule = new WebAssembly.Module(bytes);
-const wasmInstance = new WebAssembly.Instance(wasmModule, imports);
-wasm = wasmInstance.exports;
-module.exports.__wasm = wasm;
+const wasmInstance = (await WebAssembly.instantiate(wasmCode, imports)).instance;
+const wasm = wasmInstance.exports;
 
