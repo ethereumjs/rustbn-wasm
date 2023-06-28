@@ -42,9 +42,7 @@ let outputHexString = ec_pairing(inputHexString)
 
 ## Developer
 
-### Compilation
-
-Compilation process based on the [`wasm-pack`](https://rustwasm.github.io/docs/wasm-pack/introduction.html) docs.
+### Building the module
 
 For basic setup:
 - Install `rust` and `wasm-pack` via the [`wasm-pack` prerequisites](https://rustwasm.github.io/docs/wasm-pack/prerequisites/index.html)
@@ -52,6 +50,9 @@ For basic setup:
 - Install JS dependencies - `npm i`
 - Run `npm run build`
 
+### Build Outputs
+
+The build process outputs both CommonJS and ESM builds of the library and specifies entry points based on the `main` and `module` fields in `package.json`.  The CommonJS build is the direct output of `wasm-pack build --target nodejs` while the ESM build is a customized version of the output from `wasm-pack build --target web` that removes the need to use a bundler by converting the wasm bytecode to a base64 string and then placed in a JSON object that ESM environments can load directly.  Note, the ESM glue code is found in [`src.ts`](./src.ts/rustbn.ts)
 
 ## License
 
