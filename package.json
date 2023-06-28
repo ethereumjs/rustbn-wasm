@@ -3,16 +3,19 @@
   "name": "rustbn",
   "version": "0.1.0",
   "scripts": {
-    "build": "wasm-pack --target nodejs"
+    "build-node": "wasm-pack build --target nodejs -d dist/cjs",
+    "build-esm": "tsc",
+    "build": "npm run build-node && npm run wasm2b64 && npm run build-esm",
+    "wasm2b64": "node scripts/wasmToB64.js"
   },
   "devDependencies": {
     "@wasm-tool/wasm-pack-plugin": "^1.1.0",
     "copy-webpack-plugin": "^5.0.3",
-    "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.3",
-    "webpack-dev-server": "^3.7.1",
-    "rimraf": "^3.0.0"
+    "typescript": "^5.1.5"
   },
   "main": "dist/cjs/rustbn.js",
-  "module": "dist/esm/rustbn.js"
+  "module": "dist/esm/rustbn.js",
+  "dependencies": {
+    "@scure/base": "^1.1.1"
+  }
 }

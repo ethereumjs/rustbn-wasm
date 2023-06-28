@@ -10,7 +10,7 @@ It implements helpers to support the functionality defined in [EIP-196](https://
 
 ## Installation
 
-Clone this repo and build following the [Compilation]() instructions below.
+Clone this repo and build following the [Compilation] instructions below.
 
 ## Usage
 
@@ -47,9 +47,10 @@ let outputHexString = ec_pairing(inputHexString)
 Compilation process based on the [`wasm-pack`](https://rustwasm.github.io/docs/wasm-pack/introduction.html) docs.
 
 For basic setup:
-- Install `rust` and `wasm-pack` via the [`wasm-pack` preqrequisites](https://rustwasm.github.io/docs/wasm-pack/prerequisites/index.html)
+- Install `rust` and `wasm-pack` via the [`wasm-pack` prerequisites](https://rustwasm.github.io/docs/wasm-pack/prerequisites/index.html)
 - Clone this repo
-- Run `wasm-pack --target nodejs`
+- Install JS dependencies - `npm i`
+- Run `npm run build`
 
 
 ## License
