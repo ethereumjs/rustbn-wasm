@@ -3,3 +3,4 @@ src.ts/wasm.json
 scripts/
 Cargo.*
 tsconfig.json
+*.tgz
