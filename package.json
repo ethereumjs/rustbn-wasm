@@ -1,5 +1,5 @@
 {
-  "name": "rustbn.wasm",
+  "name": "rustbn-wasm",
   "version": "0.1.0",
   "description": "Javascript bindings for https://github.com/paritytech/bn (using WASM)",
   "keywords": [
@@ -9,21 +9,20 @@
     "pairing"
   ],
   "author": "acolytec3",
-  "homepage": "https://github.com/ethereumjs/rustbn.wasm",
+  "homepage": "https://github.com/ethereumjs/rustbn-wasm",
   "bugs": {
-    "url": "https://github.com/ethereumjs/rustbn.wasm/issues"
+    "url": "https://github.com/ethereumjs/rustbn-wasm/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ethereumjs/rustbn.wasm.git"
+    "url": "git+https://github.com/ethereumjs/rustbn-wasm.git"
   },
   "license": "(MIT OR Apache-2.0)",
   "scripts": {
     "build-node": "wasm-pack build --target nodejs -d dist/cjs",
     "build-esm": "tsc",
-    "build": "npm run build-node && npm run wasm2b64 && npm run build-esm && npm run fixPackageName",
-    "wasm2b64": "node scripts/wasmToB64.js",
-    "fixPackageName": "cd dist/cjs && npm pkg set name=rustbn.wasm"
+    "build": "npm run build-node && npm run wasm2b64 && npm run build-esm",
+    "wasm2b64": "node scripts/wasmToB64.js"
   },
   "main": "dist/cjs/rustbn.js",
   "module": "dist/esm/rustbn.js",
