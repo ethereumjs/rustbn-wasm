@@ -21,7 +21,7 @@ pub fn ec_mul(input_hex: String) -> String {
     match ethereum_bn128::bn128_mul(&input_parsed[..], &mut output) {
         Ok(_) => {
             let output_hex = output.to_hex();
-            return output_hex.into();
+            return format!("{}{}", "0x", output_hex);
         }
         Err(_) => return "0x".into(),
     }
@@ -35,7 +35,7 @@ pub fn ec_add(input_str: String) -> String {
     match ethereum_bn128::bn128_add(&input_parsed[..], &mut output) {
         Ok(_) => {
             let output_hex = output.to_hex();
-            return output_hex.into();
+            return format!("{}{}", "0x", output_hex);
         }
         Err(_) => return "0x".into(),
     }
@@ -49,7 +49,7 @@ pub fn ec_pairing(input_str: String) -> String {
     match ethereum_bn128::bn128_pairing(&input_parsed[..], &mut output) {
         Ok(_) => {
             let output_hex = output.to_hex();
-            return output_hex.into();
+            return format!("{}{}", "0x", output_hex);
         }
         Err(_) => return "0x".into(),
     }
