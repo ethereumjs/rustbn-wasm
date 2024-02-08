@@ -4,4 +4,4 @@ const encoded = Buffer.from(wasmBytes, 'binary').toString('base64');
 const json = {
     wasm: encoded
 }
-require('fs').writeFileSync('./src.ts/wasm.json', JSON.stringify(json))
+require('fs').writeFileSync('./src.ts/wasm.ts', `export default ${JSON.stringify(json)}`)

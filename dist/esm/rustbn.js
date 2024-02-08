@@ -1,5 +1,5 @@
 import { base64 } from '@scure/base';
-import wasmB64 from './wasm.json' assert { "type": "JSON" };
+import wasmB64 from './wasm.js';
 const imports = {};
 let wasm;
 let WASM_VECTOR_LEN = 0;
