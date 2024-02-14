@@ -1,6 +1,6 @@
 {
   "name": "rustbn-wasm",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Javascript bindings for https://github.com/paritytech/bn (using WASM)",
   "keywords": [
     "ethereum",
@@ -28,7 +28,7 @@
   "main": "dist/cjs/rustbn.js",
   "module": "dist/esm/rustbn.js",
   "dependencies": {
-    "@scure/base": "^1.1.1"
+    "@scure/base": "^1.1.5"
   },
   "devDependencies": {
     "@wasm-tool/wasm-pack-plugin": "^1.1.0",
