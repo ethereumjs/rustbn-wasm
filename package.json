@@ -22,6 +22,7 @@
     "build-node": "wasm-pack build --target nodejs -d dist/cjs",
     "build-esm": "tsc",
     "build": "npm run build-node && npm run wasm2b64 && npm run build-esm",
+    "test": "vitest run test/*",
     "wasm2b64": "node scripts/wasmToB64.js"
   },
   "main": "dist/cjs/rustbn.js",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@wasm-tool/wasm-pack-plugin": "^1.1.0",
     "copy-webpack-plugin": "^5.0.3",
-    "typescript": "^5.1.5"
+    "typescript": "^5.1.5",
+    "vitest": "^1.2.2"
   }
 }
