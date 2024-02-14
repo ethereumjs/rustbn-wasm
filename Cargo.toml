@@ -7,6 +7,8 @@ authors = ["acolytec3"]
 categories = ["wasm"]
 readme = "README.md"
 edition = "2018"
+license = "(MIT OR Apache-2.0)"
+repository = "https://github.com/ethereumjs/rustbn-wasm"
 
 [lib]
 crate-type = ["cdylib"]

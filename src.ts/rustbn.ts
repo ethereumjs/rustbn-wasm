@@ -1,6 +1,6 @@
 import { base64 } from '@scure/base'
 
-import wasmB64 from './wasm.json' assert { "type": "JSON" }
+import wasmB64 from './wasm.js'
 const imports = {}
 
 let wasm: any
@@ -19,17 +19,17 @@ const cachedTextEncoder = new TextEncoder()
 
 const encodeString =
   typeof cachedTextEncoder.encodeInto === 'function'
-    ? function (arg: any, view: any) {
-        return cachedTextEncoder.encodeInto(arg, view)
+    ? function(arg: any, view: any) {
+      return cachedTextEncoder.encodeInto(arg, view)
+    }
+    : function(arg: any, view: any) {
+      const buf = cachedTextEncoder.encode(arg)
+      view.set(buf)
+      return {
+        read: arg.length,
+        written: buf.length,
       }
-    : function (arg: any, view: any) {
-        const buf = cachedTextEncoder.encode(arg)
-        view.set(buf)
-        return {
-          read: arg.length,
-          written: buf.length,
-        }
-      }
+    }
 
 function passStringToWasm0(arg: string, malloc: any, realloc: any) {
   if (realloc === undefined) {
@@ -91,7 +91,7 @@ function getStringFromWasm0(ptr: any, len: number) {
  * @param {string} input_hex
  * @returns {string}
  */
-export const ec_mul = function (input_hex: string) {
+export const ec_mul = function(input_hex: string) {
   let deferred2_0
   let deferred2_1
   try {
@@ -114,7 +114,7 @@ export const ec_mul = function (input_hex: string) {
  * @param {string} input_str
  * @returns {string}
  */
-export const ec_add = function (input_str: string) {
+export const ec_add = function(input_str: string) {
   let deferred2_0
   let deferred2_1
   try {
@@ -137,7 +137,7 @@ export const ec_add = function (input_str: string) {
  * @param {string} input_str
  * @returns {string}
  */
-export const ec_pairing = function (input_str: string): string {
+export const ec_pairing = function(input_str: string): string {
   let deferred2_0
   let deferred2_1
   try {
