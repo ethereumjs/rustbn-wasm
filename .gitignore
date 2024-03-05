@@ -24,3 +24,6 @@ __snapshots__
 
 # Intermediate build outputs
 target
+
+# Build outputs
+dist/*
