@@ -19,9 +19,9 @@
   },
   "license": "(MIT OR Apache-2.0)",
   "scripts": {
-    "build-node": "wasm-pack build --target nodejs -d dist/cjs",
-    "build-esm": "tsc",
-    "build": "npm run build-node && npm run wasm2b64 && npm run build-esm",
+    "build:node": "babel dist/esm -d dist/cjs",
+    "build:esm": "tsc",
+    "build": "scripts/ts-build.sh",
     "test": "vitest run test/*",
     "wasm2b64": "node scripts/wasmToB64.js"
   },
@@ -34,6 +34,9 @@
     "@wasm-tool/wasm-pack-plugin": "^1.1.0",
     "copy-webpack-plugin": "^5.0.3",
     "typescript": "^5.1.5",
-    "vitest": "^1.2.2"
+    "vitest": "^1.2.2",
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9"
   }
 }

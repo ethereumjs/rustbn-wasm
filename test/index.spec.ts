@@ -1,6 +1,10 @@
-import { describe, assert, it } from 'vitest'
-import bn128 from '../dist/cjs/rustbn'
+import { describe, assert, it, beforeAll } from 'vitest'
+import { initRustBN } from '../src.ts/rustbn.js'
 describe('Curve operations', () => {
+  let bn128
+  beforeAll(async () => {
+    bn128 = await initRustBN()
+  })
   it('successful addition', function (st) {
     let input = '0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000002'
     let output = '0x030644e72e131a029b85045b68181585d97816a916871ca8d3c208c16d87cfd315ed738c0e0a7c92e7845f96b2ae9c0a68a6a449e3538fc7ff3ebf7a5a18a2c4'
