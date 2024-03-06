@@ -29,8 +29,8 @@
   "main": "dist/cjs/rustbn.js",
   "module": "dist/esm/rustbn.js",
   "exports": {
-    "require": "dist/cjs/rustbn.js",
-    "import": "dist/esm/rustbn.js"
+    "require": "./dist/cjs/rustbn.js",
+    "import": "./dist/esm/rustbn.js"
   },
   "dependencies": {
     "@scure/base": "^1.1.5"
