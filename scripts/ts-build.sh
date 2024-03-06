@@ -44,12 +44,13 @@ build_node() {
 }
 EOT
     echo "> npm run build:node"
-    printf "${BLUE}[Node build] Working... "
+    printf "${BLUE}[Node build] Working...\n"
 
     cp dist/esm/*.map dist/cjs
     cp dist/esm/*.d.ts dist/cjs
     
-    npm run build:node
+    pwd
+    npx babel --config-file ./.babelrc dist/esm --out-dir dist/cjs
 
     green "DONE"
 
