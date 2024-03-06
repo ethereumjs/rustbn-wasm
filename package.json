@@ -19,9 +19,9 @@
   },
   "license": "(MIT OR Apache-2.0)",
   "scripts": {
-    "build:node": "babel dist/esm -d dist/cjs",
+    "build:node": "babel dist/esm --out-dir dist/cjs",
     "build:esm": "tsc",
-    "build": "rm -rf dist && scripts/ts-build.sh",
+    "build": "rm -rf dist && npm run build:esm && npm run build:node && cp dist/esm/*.map dist/cjs && cp dist/esm/*.d.ts dist/cjs",
     "prepare": "npm run build",
     "test": "vitest run test/*",
     "wasm2b64": "node scripts/wasmToB64.js"

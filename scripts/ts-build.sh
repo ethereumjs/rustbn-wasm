@@ -46,9 +46,11 @@ EOT
     echo "> npm run build:node"
     printf "${BLUE}[Node build] Working... "
 
-    npm run build:node
     cp dist/esm/*.map dist/cjs
     cp dist/esm/*.d.ts dist/cjs
+    
+    npm run build:node
+
     green "DONE"
 
     echo "\n";
