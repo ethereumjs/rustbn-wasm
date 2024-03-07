@@ -105,3 +105,9 @@ Temporary Items
 
 ## Vitest
 __snapshots__
+
+# Intermediate build outputs
+target
+
+# Build outputs
+dist/*

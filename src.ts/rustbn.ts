@@ -19,10 +19,10 @@ const cachedTextEncoder = new TextEncoder()
 
 const encodeString =
   typeof cachedTextEncoder.encodeInto === 'function'
-    ? function(arg: any, view: any) {
+    ? function (arg: any, view: any) {
       return cachedTextEncoder.encodeInto(arg, view)
     }
-    : function(arg: any, view: any) {
+    : function (arg: any, view: any) {
       const buf = cachedTextEncoder.encode(arg)
       view.set(buf)
       return {
@@ -91,7 +91,7 @@ function getStringFromWasm0(ptr: any, len: number) {
  * @param {string} input_hex
  * @returns {string}
  */
-export const ec_mul = function(input_hex: string) {
+const ec_mul = function (input_hex: string) {
   let deferred2_0
   let deferred2_1
   try {
@@ -114,7 +114,7 @@ export const ec_mul = function(input_hex: string) {
  * @param {string} input_str
  * @returns {string}
  */
-export const ec_add = function(input_str: string) {
+const ec_add = function (input_str: string) {
   let deferred2_0
   let deferred2_1
   try {
@@ -137,7 +137,7 @@ export const ec_add = function(input_str: string) {
  * @param {string} input_str
  * @returns {string}
  */
-export const ec_pairing = function(input_str: string): string {
+const ec_pairing = function (input_str: string): string {
   let deferred2_0
   let deferred2_1
   try {
@@ -155,9 +155,13 @@ export const ec_pairing = function(input_str: string): string {
     wasm.__wbindgen_free(deferred2_0, deferred2_1, 1)
   }
 }
-
-const wasmInstance = await WebAssembly.instantiate(
-  await WebAssembly.compile(base64.decode(wasmB64.wasm)),
-  imports
-)
-wasm = wasmInstance.exports
+export const initRustBN = async () => {
+  const wasmInstance = await WebAssembly.instantiate(
+    await WebAssembly.compile(base64.decode(wasmB64.wasm)),
+    imports
+  )
+  wasm = wasmInstance.exports
+  return {
+    ec_pairing, ec_add, ec_mul
+  }
+}
