@@ -24,13 +24,14 @@
     "build": "rm -rf dist && scripts/ts-build.sh",
     "prepare": "npm run build",
     "test": "vitest run test/*",
+    "build:wasm": "wasm-pack build --target web -d wasm",
     "wasm2b64": "node scripts/wasmToB64.js"
   },
   "main": "dist/cjs/rustbn.js",
   "module": "dist/esm/rustbn.js",
   "exports": {
-    "require": "dist/cjs/rustbn.js",
-    "import": "dist/esm/rustbn.js"
+    "require": "./dist/cjs/rustbn.js",
+    "import": "./dist/esm/rustbn.js"
   },
   "dependencies": {
     "@scure/base": "^1.1.5"
