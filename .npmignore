@@ -1,7 +1,12 @@
 .github
-src.ts/rustbn_bg.wasm
+src.ts/rustbn_bg.*
+src.ts/wasm.ts
+src/
 scripts/
 test
 Cargo.*
 tsconfig.json
 *.tgz
+target/
+.babelrc
+wasm/
