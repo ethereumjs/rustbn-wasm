@@ -1,6 +1,7 @@
 .github
 src.ts/rustbn_bg.*
 src.ts/wasm.ts
+src/
 scripts/
 test
 Cargo.*
